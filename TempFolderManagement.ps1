@@ -7,7 +7,7 @@ $FileName = $RootName + $LogDate
 
 $(
 #Declare path
-$Path = "C:\Windows\Temp"
+$Path = "$env:temp"
 
 #Get total size of directory, count folders, and count files recursively
 $TotalSize = "{0:N2} MB" -f ((Get-ChildItem $Path -Recurse | Measure-Object -Property Length -Sum -ErrorAction Stop).Sum /1MB)
