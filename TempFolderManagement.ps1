@@ -34,7 +34,7 @@ $NewNumFiles = Get-ChildItem $Path -File -Recurse | Measure-Object | %{$_.Count}
 "New Total Size:" , $NewTotalSize, "NFolders:" , $NewNumFolders, "NFiles:" , $NewNumFiles | Out-String 
 
 #Silently clears recycle bin
-Clear-RecycleBin -Confirm:$false ) *>&1 > C:\Users\jacpurs\Desktop\$FileName.txt #Temp path for testing '
+Clear-RecycleBin -Confirm:$false ) *>&1 > C:\Users\username\Desktop\$FileName.txt #Temp path for testing '
 
 $Trigger = New-ScheduledTaskTrigger -daily -DaysInterval 5 -At 9am
 Register-ScheduledTask -Action $Action -Trigger $Trigger -TaskName "Temp Folder Management" -Description "Removes files older than 24 hours that are not in use"
