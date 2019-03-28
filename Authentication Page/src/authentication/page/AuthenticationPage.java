@@ -18,6 +18,7 @@ public class AuthenticationPage {
         String userName, userPass, logout, passHash = null, user = null;
         int userAttempts = 0;
         boolean inputDone = false;
+        String algorithm = "MD5";
 
         /* initialize files. FIXME implement try block and catch fileNotFound */
         FileInputStream zookeeper = new FileInputStream("zookeeper.txt");
@@ -38,7 +39,7 @@ public class AuthenticationPage {
             } else {
                 System.out.println("Enter password: ");
                 userPass = scnr.nextLine();
-                passHash = hashPassword(userPass);
+                passHash = hashPassword(userPass, algorithm);
             }
             inFS = new Scanner(credentialsFile);
 
@@ -99,11 +100,11 @@ public class AuthenticationPage {
     }
 
     //Method used for hashing passwords. Creates MD5 hash and returns value.
-    public static String hashPassword(String original) {
+    public static String hashPassword(String original, String algorithm) {
 
         try {
 
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance(algorithm);
             md.update(original.getBytes());
             byte[] digest = md.digest();
             StringBuffer sb = new StringBuffer();
