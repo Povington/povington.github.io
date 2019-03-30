@@ -1,7 +1,7 @@
 ## Feel Free to take a look at what I've been working on below:
 
 
-Here's a quick  [Code Review] (https://youtu.be/B3gvz-9SsJYI) performed on an authentication page I've been working on. Check it out!
+Here's a quick  [Code Review](https://youtu.be/B3gvz-9SsJYI) performed on an authentication page I've been working on. Check it out!
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
