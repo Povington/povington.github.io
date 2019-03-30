@@ -100,7 +100,7 @@ public class AuthenticationPage {
     }
 
     //Method used for hashing passwords. Creates MD5 hash and returns value.
-    public static String hashPassword(String original, String algorithm) {
+    private static String hashPassword(String original, String algorithm) {
 
         try {
 
