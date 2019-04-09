@@ -11,6 +11,7 @@ Take a look below to see a few other scripts and apps that I have created.
 
 For example, here's an example of some PyMongo methods I have been working on. . 
 
+'''
 #code in python
 import datetime
 import json
@@ -37,6 +38,7 @@ def get_tickers(key, value):
     if not document:
       abort(404, 'No document with %s:%s' %key,value)
     return document
+'''
 
 You can see all the methods I've been creating [here](https://github.com/Povington/povington.github.io/tree/master/PyMongo%20Methods)
 
