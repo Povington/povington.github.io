@@ -11,7 +11,7 @@ Take a look below to see a few other scripts and apps that I have created.
 
 For example, here's an example of some PyMongo methods I have been working on. . 
 
-```#code in python
+#code in python
 import datetime
 import json
 from bson import json_util
@@ -36,7 +36,8 @@ def get_tickers(key, value):
   for document in collection.find({key:value}, {"_id" : 0, "Ticker" : 1}):
     if not document:
       abort(404, 'No document with %s:%s' %key,value)
-    return document```
+    return document
+
 You can see all the methods I've been creating [here](https://github.com/Povington/povington.github.io/tree/master/PyMongo%20Methods)
 
 I've also been creating some powershell scripts to help with system management. Take a look [here](https://github.com/Povington/povington.github.io/blob/master/TempFolderManagement.ps1) to see an example.
