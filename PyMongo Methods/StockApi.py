@@ -95,7 +95,7 @@ def getReport():
   return json.dumps(read_result, sort_keys=True, indent=4, default=json.default)
 
 @route('/stocks/api/v1.0/industryReport/<industry>', method='GET')
-#Function that searches database based on industry and retruns top five stocks in the industry. 
+#Function that searches database based on industry and returns top five stocks in the industry. 
 def portfolio(industry = None):
   try:
     pipeLine = [{"$match":{"Industry":industry}},
