@@ -9,49 +9,38 @@ You can take a look at the full authentication page project [here.](https://gith
 
 Take a look below to see a few other scripts and apps that I have created.
 
-For example, here's a neat powershell script I created. 
+For example, here's an example of some PyMongo methods I have been working on. . 
 
-```$Action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '
-#Generate Unique name for log file
-$RootName = "Log-"
-$LogDate = Get-Date -Format FileDate
-$FileName = $RootName + $LogDate
-$(
-#Declare path
-$Path = "$env:temp"
-#Get total size of directory, count folders, and count files recursively
-$TotalSize = "{0:N2} MB" -f ((Get-ChildItem $Path -Recurse | Measure-Object -Property Length -Sum -ErrorAction Stop).Sum /1MB)
-$NumFolders = Get-ChildItem $Path -Directory | Measure-Object | %{$_.Count}
-$NumFiles = Get-ChildItem $Path -File -Recurse | Measure-Object | %{$_.Count}
-#Prints found values
-"Total Size:" , $TotalSize, "Folders:" , $NumFolders, "Files:" , $NumFiles | Out-String 
-#Declare Date time period for Deletion
-$Today = Get-Date
-$DaysAgo = "-1"
-$ToDelete = $Today.AddDays($DaysAgo)
-#deletes files whos creation date is more than 24 hours ago.
-Get-ChildItem $Path -Recurse | Where-Object { $_.CreationTime -lt $ToDelete } | Remove-Item -Recurse -ErrorAction SilentlyContinue
-#Gets new total size of directory, new count of folders, and new count of files recursively. 
-$NewTotalSize = "{0:N2} MB" -f ((Get-ChildItem $Path -Recurse | Measure-Object -Property Length -Sum -ErrorAction Stop).Sum /1MB)
-$NewNumFolders = Get-ChildItem $Path -Directory | Measure-Object | %{$_.Count}
-$NewNumFiles = Get-ChildItem $Path -File -Recurse | Measure-Object | %{$_.Count}
-#Prints new found values
-"New Total Size:" , $NewTotalSize, "NFolders:" , $NewNumFolders, "NFiles:" , $NewNumFiles | Out-String 
-#Silently clears recycle bin
-Clear-RecycleBin -Confirm:$false ) *>&1 > C:\Users\username\Desktop\$FileName.txt #Temp path for testing '
+```#code in python
+import datetime
+import json
+from bson import json_util
+from pymongo import MongoClient
 
-$Trigger = New-ScheduledTaskTrigger -daily -DaysInterval 5 -At 9am
-Register-ScheduledTask -Action $Action -Trigger $Trigger -TaskName "Temp Folder Management" -Description "Removes files older than 24 hours that are not in use"
+#Create connection to db and collection
+connection = MongoClient('localhost',27017)
+db = connection['market']
+collection = db['stocks']
 
-```
-You can access the above script [here](https://github.com/Povington/povington.github.io/blob/master/TempFolderManagement.ps1)
+#Takes input for key, high and low values. 
+#Returns count of documents that fall between high and low values      
+def get_count(key, high, low):
+  result = collection.count({key: {'$lte' : high, '$gte' : low}})
+  if not result:
+    abort(404, 'No document with %s' %key)
+  return result
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+#Takes input as key and value pair. 
+#Queries db and returns "Ticker" value for documents that match query criteria
+def get_tickers(key, value):
+  for document in collection.find({key:value}, {"_id" : 0, "Ticker" : 1}):
+    if not document:
+      abort(404, 'No document with %s:%s' %key,value)
+    return document```
+You can see all the methods I've been creating [here](https://github.com/Povington/povington.github.io/tree/master/PyMongo%20Methods)
 
-### Jekyll Themes
+I've also been creating some powershell scripts to help with system management. Take a look [here](https://github.com/Povington/povington.github.io/blob/master/TempFolderManagement.ps1) to see an example.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Povington/povington.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Thank you for taking the time to check out my page and work. 
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
