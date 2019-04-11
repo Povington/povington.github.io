@@ -1,15 +1,15 @@
-## Feel Free to take a look at what I've been working on below:
+## Listed below are a select few artifacts that I have created:
 
 
-Here's a quick  [Code Review](https://youtu.be/B3gvz-9SsJYI) performed on an authentication page I've been working on. Check it out!
+Here's a [Code Review](https://youtu.be/B3gvz-9SsJYI) performed on an authentication page I've been working on. Check it out!
 
-You can take a look at the full authentication page project [here.](https://github.com/Povington/povington.github.io/tree/master/Authentication%20Page)
+You can review the full authentication page project [here.](https://github.com/Povington/povington.github.io/tree/master/Authentication%20Page)
 
 ### Other Projects
 
-Take a look below to see a few other scripts and apps that I have created.
+Below are a few other scripts and apps that I have created.
 
-For example, here's an example of some PyMongo methods I have been working on. . 
+For example, here are some PyMongo methods I have been working on:
 
 ```
 #code in python
